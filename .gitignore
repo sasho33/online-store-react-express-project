@@ -1,1 +1,29 @@
-node_modules
+# Dependency directories
+node_modules/
+
+# Environment variables
+.env
+
+# Build output
+/build
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
