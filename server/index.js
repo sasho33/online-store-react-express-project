@@ -1,4 +1,5 @@
-require('dotenv').config(); // Add this line
+require('dotenv').config();
+
 const express = require('express');
 const sequelize = require('./db');
 const models = require('./models/models'); // models object contains all models
