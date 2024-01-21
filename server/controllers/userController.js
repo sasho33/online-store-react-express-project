@@ -5,7 +5,7 @@ class UserController {
 
   async check(req, res) {
     const query = req.query; // Get query from request
-    res.json(query); // Send query back to client
+    res.json(Number(query.id)); // Send query back to client
   }
 }
 

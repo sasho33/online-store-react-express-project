@@ -4,7 +4,7 @@
   "description": "This project is an online store built with React and Node.js. If you find this project useful, please consider giving it a star.",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon ./server/index.js"
+    "dev": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
