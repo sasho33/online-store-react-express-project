@@ -2,9 +2,6 @@ const ApiError = require('../error/ApiError');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken'); // Import jsonwebtoken module
 const { User, Basket } = require('../models/models');
-const dotenv = require('dotenv');
-// get config vars
-dotenv.config();
 
 const generateJwt = (id, email, role) => {
   return jwt.sign(
@@ -50,7 +47,10 @@ class UserController {
     return res.json({ token }); // Send token to client
   }
 
-  async check(req, res, next) {}
+  async check(req, res, next) {
+    const token = generateJwt(req.user.id, req.user.email, req.user.role); // Generate jwt token for user who constantly logged in
+    return res.json({ token }); // Send token to client
+  }
 }
 
 module.exports = new UserController(); // Export UserController object
