@@ -1,11 +1,18 @@
+const ApiError = require('../error/ApiError');
+
 class UserController {
   async registration(req, res) {}
 
   async login(req, res) {}
 
-  async check(req, res) {
-    const query = req.query; // Get query from request
-    res.json(Number(query.id)); // Send query back to client
+  async check(req, res, next) {
+    const { id } = req.query; // Get query from request
+
+    if (!id) {
+      return next(ApiError.badRequest('Id is not defined'));
+    }
+
+    res.json(id); // Send query back to client
   }
 }
 
