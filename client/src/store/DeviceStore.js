@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 
-export default class UserStore {
+export default class DeviceStore {
   constructor() {
     this._types = [
       { id: 1, name: 'Холодильники' },
@@ -13,6 +13,8 @@ export default class UserStore {
       { id: 2, name: 'Apple' },
       { id: 3, name: 'Lenovo' },
       { id: 4, name: 'Asus' },
+      { id: 5, name: 'Xiaomi' },
+      { id: 6, name: 'Huawei' },
     ];
     this._devices = [
       {
@@ -60,6 +62,7 @@ export default class UserStore {
     ];
 
     this._selectedType = {};
+    this._selectedBrand = {};
 
     makeAutoObservable(this);
   }
@@ -70,11 +73,15 @@ export default class UserStore {
   setBrands(brands) {
     this._brands = brands;
   }
+
   setDevices(devices) {
     this._devices = devices;
   }
   setSelectedType(type) {
     this._selectedType = type;
+  }
+  setSelectedBrand(brand) {
+    this._selectedBrand = brand;
   }
 
   get types() {
@@ -91,5 +98,9 @@ export default class UserStore {
 
   get selectedType() {
     return this._selectedType;
+  }
+
+  get selectedBrand() {
+    return this._selectedBrand;
   }
 }
