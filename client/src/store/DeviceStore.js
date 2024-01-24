@@ -59,6 +59,8 @@ export default class UserStore {
       },
     ];
 
+    this._selectedType = {};
+
     makeAutoObservable(this);
   }
 
@@ -71,6 +73,9 @@ export default class UserStore {
   setDevices(devices) {
     this._devices = devices;
   }
+  setSelectedType(type) {
+    this._selectedType = type;
+  }
 
   get types() {
     return this._types;
@@ -82,5 +87,9 @@ export default class UserStore {
 
   get devices() {
     return this._devices;
+  }
+
+  get selectedType() {
+    return this._selectedType;
   }
 }
