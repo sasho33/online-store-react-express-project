@@ -6,7 +6,7 @@ import { Card, Col, Row } from 'react-bootstrap';
 const BrandBar = observer(() => {
   const { device } = useContext(Context);
   return (
-    <Row md={4} xs={3} className="mt-3">
+    <Row md={4} xs={3}>
       {device.brands.map((brand) => (
         <Col key={brand.id}>
           <Card

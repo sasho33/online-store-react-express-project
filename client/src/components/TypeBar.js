@@ -6,7 +6,7 @@ import { ListGroup } from 'react-bootstrap';
 const TypeBar = observer(() => {
   const { device } = useContext(Context);
   return (
-    <ListGroup>
+    <ListGroup className="mb-2">
       {device.types.map((type) => (
         <ListGroup.Item
           style={{ cursor: 'pointer' }}
@@ -15,6 +15,7 @@ const TypeBar = observer(() => {
             device.setSelectedType(type);
           }}
           key={type.id}
+          variant="light"
         >
           {type.name}
         </ListGroup.Item>
