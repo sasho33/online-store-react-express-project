@@ -8,6 +8,11 @@ const CreateDevice = ({ show, onHide }) => {
   const addInfo = () => {
     setInfo([...info, { title: '', description: '', number: Date.now() }]);
   };
+
+  const removeInfo = (number) => {
+    setInfo(info.filter((i) => i.number !== number));
+  };
+
   return (
     <Modal show={show} onHide={onHide} size="lg" centered>
       <Modal.Header closeButton>
@@ -47,7 +52,14 @@ const CreateDevice = ({ show, onHide }) => {
                 <Form.Control placeholder={'Enter description of option'} />
               </Col>
               <Col md={4}>
-                <Button variant={'outline-danger'}>Delete</Button>
+                <Button
+                  variant={'outline-danger'}
+                  onClick={() => {
+                    removeInfo(i.number);
+                  }}
+                >
+                  Delete
+                </Button>
               </Col>
             </Row>
           ))}
