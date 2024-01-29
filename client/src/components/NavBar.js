@@ -36,7 +36,11 @@ const NavBar = observer(() => {
               Admin Panel
             </Button>
             <Button
-              onClick={() => history.push(LOGIN_ROUTE)}
+              onClick={() => {
+                user.setUser({});
+                user.setIsAuth(false);
+                history.push(LOGIN_ROUTE);
+              }}
               variant={'outline-light'}
               className="ml-2"
             >
@@ -45,7 +49,13 @@ const NavBar = observer(() => {
           </Nav>
         ) : (
           <Nav className="ml-auto" style={{ color: 'white' }}>
-            <Button variant={'outline-light'} className="ml-2" onClick={() => user.setIsAuth(true)}>
+            <Button
+              variant={'outline-light'}
+              className="ml-2"
+              onClick={() => {
+                history.push(LOGIN_ROUTE);
+              }}
+            >
               Login
             </Button>
           </Nav>

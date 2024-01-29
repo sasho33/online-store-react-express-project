@@ -19,11 +19,12 @@ class UserController {
   async registration(req, res) {
     const { email, password, role } = req.body; // Get email, password, role from request body
     if (!email || !password) {
-      return next(ApiError.badRequest('Incorrect email or password'));
+      return next(ApiError.internal('Incorrect email or password'));
     }
     const candidate = await User.findOne({ where: { email } });
     if (candidate) {
-      return next(ApiError.badRequest('User with this email already exists'));
+      // return next(ApiError.internal('User with this email already exists'));
+      return res.status(400).json({ message: 'User with this email already exists' });
     }
     const hashPassword = await bcrypt.hash(password, 5);
     const user = await User.create({ email, password: hashPassword, role }); // Create new user

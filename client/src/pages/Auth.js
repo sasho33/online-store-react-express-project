@@ -1,23 +1,35 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Card, Container, Form, Button } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
-import { LOGIN_ROUTE, REGISTRATION_ROUTE } from '../utils/const';
+import { NavLink, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE } from '../utils/const';
 import { useLocation } from 'react-router-dom/cjs/react-router-dom';
 import { login, registration } from '../http/userAPI';
+import { observer } from 'mobx-react-lite';
+import { Context } from '../index';
 
-const Auth = () => {
+const Auth = observer(() => {
+  const { user } = useContext(Context);
   const location = useLocation();
   const isLogin = location.pathname === LOGIN_ROUTE;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const history = useHistory();
 
   const onLoginButtonClick = async () => {
-    if (isLogin) {
-      const response = await login();
-      console.log(response);
-    } else {
-      const response = await registration();
-      console.log(response);
+    try {
+      let data;
+      if (isLogin) {
+        data = await login(email, password);
+        console.log(data);
+      } else {
+        data = await registration(email, password);
+        console.log(data);
+      }
+      user.setUser(user);
+      user.setIsAuth(true);
+      history.push(SHOP_ROUTE);
+    } catch (e) {
+      alert(e.response.data.message);
     }
   };
 
@@ -64,6 +76,6 @@ const Auth = () => {
       </Card>
     </Container>
   );
-};
+});
 
 export default Auth;
