@@ -6,6 +6,7 @@ import { DEVICE_ROUTE } from '../utils/const';
 
 const DeviceItem = ({ device }) => {
   const history = useHistory();
+
   return (
     <Col
       md={3}
@@ -16,7 +17,7 @@ const DeviceItem = ({ device }) => {
       }}
     >
       <Card style={{ width: 150, cursor: 'pointer' }} border={'light'}>
-        <Image width={150} height={150} src={device.img} />
+        <Image width={150} height={150} src={process.env.REACT_APP_API_URL + '/' + device.img} />
         <div className="d-flex mt-1 justify-content-between align-items-center text-black-50">
           <div>Samsung s24...</div>
           <div className="d-flex align-items-center">
