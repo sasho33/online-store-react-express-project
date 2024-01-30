@@ -5,7 +5,7 @@ const ApiError = require('../error/ApiError');
 class DeviceController {
   async create(req, res, next) {
     try {
-      const { name, price, brandId, typeId, info } = req.body; // Get name, price, brandId, typeId, info from request body
+      let { name, price, brandId, typeId, info } = req.body; // Get name, price, brandId, typeId, info from request body
       const { img } = req.files; // Get img from request files
       let fileName = uuid.v4() + '.jpg'; // Create unique file name
       img.mv(path.resolve(__dirname, '..', 'static', fileName));
